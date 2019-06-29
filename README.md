@@ -32,7 +32,7 @@ Task definition in order of priority
 
 
 ### Trello
-[Link url](https://trello.com)
+https://trello.com/b/iCf00iot/juego-olgazin-gallinas
 
 
 ### Git
@@ -43,4 +43,4 @@ URls for the project repo and deploy
 
 ### Slides
 URls for the project presentation (slides)
-[Link Slides.com](http://slides.com)
+https://slides.com/olgazinoveva/my-game-gallinas
