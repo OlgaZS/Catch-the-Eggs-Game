@@ -37,7 +37,7 @@ Classes and methods definition.
    --win(),
    --gameOver(),
    --crear campo de juego(),
-   --crear el jugador(),
+   --crear el jugador(),,
    --hacer gallina lanzarObjeto()
 
 2) Clase Jugador:
