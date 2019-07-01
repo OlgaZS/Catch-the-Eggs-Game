@@ -1,4 +1,4 @@
-# Project's name
+# Catch the Egg
 
 ## Description
 
@@ -30,27 +30,30 @@ Deseable:
 Classes and methods definition.
 
 1. Clase Game:
-   -propiedades:
-   estado: jugando, pausa,
-   -metodos:
-   --start(),
-   --win(),
-   --gameOver(),
-   --crear campo de juego(),
-   --crear el jugador(),,
-   --hacer gallina lanzarObjeto()
 
-2) Clase Jugador:
-   -propiedades: cesta(iniciamos con = 0),positionX, positionY
-   -metodos: counter cesta ()
+   - propiedades:
+     estado: jugando, pausa,
+   - metodos:
+     --start(),
+     --win(),
+     --gameOver(),
+     --crear campo de juego(),
+     --crear el jugador(),,
+     --hacer gallina lanzarObjeto()
 
-3) Clase Gallina:
-   -propiedades: positionX, positionY
-   -metodos: lanzarObjeto()
+2. Clase Jugador:
+
+   - propiedades: cesta(iniciamos con = 0),positionX, positionY
+   - metodos: counter cesta ()
+
+3. Clase Gallina:
+
+   - propiedades: positionX, positionY
+   - metodos: lanzarObjeto()
 
 4. Clase Objeto callendo (huevo o kaka o premio):
-   -propiedades: positionX, positionY, puntos (iniciamos igual = 1)
-   -metodos: lanzarObjeto()
+   - propiedades: positionX, positionY, puntos (iniciamos igual = 1)
+   - metodos: lanzarObjeto()
 
 ## States y States Transitions
 
