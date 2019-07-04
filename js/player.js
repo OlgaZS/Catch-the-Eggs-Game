@@ -7,11 +7,12 @@ class Player {
       y: 600 - this.height - 10
     };
   }
-  draw(ctx) {
-    ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
-    ctx.fillStyle("#2FC6B1");
+
+  moveLeft() {
+    this.position.x = -5;
   }
 
-  moveLeft() {}
-  moveRight() {}
+  moveRight() {
+    this.position.x = +5;
+  }
 }
