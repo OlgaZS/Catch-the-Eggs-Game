@@ -28,11 +28,15 @@ class Game {
         case 40: // arror down
           console.log("key down");
           break;
-        case 37: // arror left
+        case 37:
+          this.player.moveLeft(); // arror left
           console.log("key left");
+          console.log(this.player.position.x);
           break;
-        case 39: // arrow right
+        case 39:
+          this.player.moveRight(); // arrow right
           console.log("key right");
+          console.log(this.player.position.x);
           break;
         case 80: // p pause
           break;
@@ -41,6 +45,7 @@ class Game {
   }
 
   update() {
+    this.ctx.clearRect(0, 0, 800, 600);
     console.log("update");
     this._drawPlayer();
     window.requestAnimationFrame(this.update.bind(this));
