@@ -2,6 +2,7 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.player = new Player();
+    this.egg = new Egg();
   }
 
   start() {
@@ -16,6 +17,16 @@ class Game {
       this.player.position.y,
       this.player.width,
       this.player.height
+    );
+  }
+
+  _drawEgg() {
+    this.ctx.fillStyle = "#2FC6B1";
+    this.ctx.fillRect(
+      this.egg.position.x,
+      this.egg.position.y,
+      this.egg.width,
+      this.egg.height
     );
   }
 
@@ -48,6 +59,7 @@ class Game {
     this.ctx.clearRect(0, 0, 800, 600);
     console.log("update");
     this._drawPlayer();
+    this._drawEgg();
     window.requestAnimationFrame(this.update.bind(this));
   }
 }
