@@ -7,6 +7,7 @@ class Game {
 
   start() {
     this.addControlToKeys();
+    this.egg.startDrop();
     window.requestAnimationFrame(this.update.bind(this));
   }
 
@@ -20,8 +21,14 @@ class Game {
     );
   }
 
+  _checkEggHitBottom() {
+    if (this.egg.position.y > 600) {
+      this.egg.position.y = 0;
+    }
+  }
+
   _drawEgg() {
-    this.ctx.fillStyle = "#2FC6B1";
+    this.ctx.fillStyle = "violet";
     this.ctx.fillRect(
       this.egg.position.x,
       this.egg.position.y,
@@ -60,6 +67,7 @@ class Game {
     console.log("update");
     this._drawPlayer();
     this._drawEgg();
+    this._checkEggHitBottom();
     window.requestAnimationFrame(this.update.bind(this));
   }
 }
