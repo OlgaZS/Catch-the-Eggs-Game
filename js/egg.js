@@ -1,12 +1,12 @@
 class Egg {
-  constructor() {
-    this.points = undefined;
+  constructor(name, points, velocity, x, y) {
+    this.name = name;
+    this.points = points;
+    this.velocity = velocity;
+    this.x = x;
+    this.y = y;
     this.width = 20;
     this.height = 20;
-    this.position = {
-      x: 30,
-      y: 30
-    };
   }
 
   startDrop() {
@@ -16,6 +16,6 @@ class Egg {
   }
 
   drop() {
-    this.position.y += 10;
+    this.y += this.velocity;
   }
 }

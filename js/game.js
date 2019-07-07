@@ -2,7 +2,7 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.player = new Player();
-    this.egg = new Egg();
+    this.egg = new Egg("goodEgg", 10, 5, 70, 20);
   }
 
   start() {
@@ -22,19 +22,14 @@ class Game {
   }
 
   _checkEggHitBottom() {
-    if (this.egg.position.y > 600) {
-      this.egg.position.y = 0;
+    if (this.egg.y > 600) {
+      this.egg.y = 0;
     }
   }
 
   _drawEgg() {
     this.ctx.fillStyle = "violet";
-    this.ctx.fillRect(
-      this.egg.position.x,
-      this.egg.position.y,
-      this.egg.width,
-      this.egg.height
-    );
+    this.ctx.fillRect(this.egg.x, this.egg.y, this.egg.width, this.egg.height);
   }
 
   addControlToKeys() {

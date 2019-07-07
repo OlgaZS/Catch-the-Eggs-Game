@@ -20,4 +20,6 @@ class Player {
       this.position.x += 50;
     }
   }
+
+  collidesWith() {}
 }
