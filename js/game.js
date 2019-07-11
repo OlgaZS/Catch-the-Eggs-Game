@@ -3,7 +3,9 @@ class Game {
     this.ctx = ctx;
     this.points = 0;
     this.player = new Player();
-    this.egg = new Egg("goodEgg", 1, 10, 200, 20);
+    this.egg = new Egg("whiteEgg", 1, 10, Math.floor(Math.random() * 750), 20);
+    this.intervalGame = undefined;
+    this.gameOver = undefined;
   }
 
   start() {
@@ -24,7 +26,7 @@ class Game {
 
   _checkEggHitBottom() {
     if (this.egg.y > 600) {
-      this.egg.y = 0;
+      this.egg.y = 20;
     }
   }
 
@@ -53,6 +55,7 @@ class Game {
           // console.log(this.player.position.x);
           break;
         case 80: // p pause
+          this.egg.interval ? this.egg.stop() : this.egg.startDrop();
           break;
       }
     };
@@ -67,6 +70,13 @@ class Game {
     window.requestAnimationFrame(this.update.bind(this));
   }
 
+  pause() {
+    if (this.intervalGame) {
+      window.cancelAnimationFrame(this.intervalGame);
+      this.intervalGame = undefined;
+    }
+  }
+
   collission() {
     const eggBottonLeftX = this.egg.x + this.egg.height;
     const playerTopLeftX = this.player.position.x;
@@ -79,7 +89,8 @@ class Game {
         eggBottonLeftX <= playerTopRightX) ||
         (eggBottonRightX >= playerTopLeftX &&
           eggBottonRightX <= playerTopRightX)) &&
-      eggBottonY >= playerTop
+      //eggBottonY >= playerTop
+      eggBottonY === playerTop
     ) {
       console.log("Collission");
       this.points += this.egg.points;

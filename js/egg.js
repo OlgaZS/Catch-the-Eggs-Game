@@ -7,6 +7,7 @@ class Egg {
     this.y = y;
     this.width = 20;
     this.height = 20;
+    this.interval = undefined;
   }
 
   startDrop() {
@@ -17,5 +18,12 @@ class Egg {
 
   drop() {
     this.y += this.velocity;
+  }
+
+  stop() {
+    if (this.interval) {
+      clearInterval(this.interval);
+      this.interval = undefined;
+    }
   }
 }
