@@ -13,12 +13,17 @@ class Game {
     console.log("start!", this);
     this.addControlToKeys();
     this.egg.startDrop();
-    window.requestAnimationFrame(this.update.bind(this));
+    this.intervalGame = window.requestAnimationFrame(this.update.bind(this));
   }
 
   restart() {
-    this.points = 10;
-    this.life = 5;
+    this.points = 0;
+    this.life = 3;
+    if (this.intervalGame) {
+      window.cancelAnimationFrame(this.intervalGame);
+      this.intervalGame = undefined;
+    }
+    // let document.getElementById borrare gave over
     //  capturar el btn, add eventlistener +limpiar contadores
     this.start();
   }
