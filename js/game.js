@@ -10,7 +10,7 @@ class Game {
   }
 
   start() {
-    console.log("start!", this);
+    console.log("start!!!", this);
     this.addControlToKeys();
     this.egg.startDrop();
     this.intervalGame = window.requestAnimationFrame(this.update.bind(this));
