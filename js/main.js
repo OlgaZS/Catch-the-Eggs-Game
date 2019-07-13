@@ -3,5 +3,14 @@ window.onload = function() {
   const ctx = canvas.getContext("2d");
 
   let game = new Game(ctx);
-  game.start();
+
+  document
+    .getElementById("startBTN")
+    .addEventListener("click", game.start.bind(game));
+
+  document
+    .getElementById("restartBTN")
+    .addEventListener("click", game.restart.bind(game));
 };
+
+// game.start();

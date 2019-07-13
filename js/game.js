@@ -10,13 +10,21 @@ class Game {
   }
 
   start() {
+    console.log("start!", this);
     this.addControlToKeys();
     this.egg.startDrop();
     window.requestAnimationFrame(this.update.bind(this));
   }
 
+  restart() {
+    this.points = 10;
+    this.life = 5;
+    //  capturar el btn, add eventlistener +limpiar contadores
+    this.start();
+  }
+
   _drawPlayer() {
-    this.ctx.fillStyle = "#2FC6B1";
+    this.ctx.fillStyle = "black";
     this.ctx.fillRect(
       this.player.position.x,
       this.player.position.y,
@@ -39,7 +47,7 @@ class Game {
   }
 
   _drawEgg() {
-    this.ctx.fillStyle = "violet";
+    this.ctx.fillStyle = "blue";
     this.ctx.fillRect(this.egg.x, this.egg.y, this.egg.width, this.egg.height);
   }
 

@@ -1,5 +1,5 @@
 #gameover {
-  background-image: url();
+  background-image: url("/home/olga/code/Ironhack labs/My-Game/images/GameOver.png");
   display: block;
   position: relative;
 }

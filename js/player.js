@@ -23,12 +23,4 @@ class Player {
       this.position.x += 50;
     }
   }
-
-  // necesito esta funcion aqui????
-  // stop() {
-  // if (this.intervalID) {
-  // clearInterval(this.intervalID);
-  // this.intervalID = undefined;
-  // }
-  // }
 }
