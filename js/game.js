@@ -2,8 +2,9 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.points = 0;
+    this.life = 3;
     this.player = new Player();
-    this.egg = new Egg("whiteEgg", 1, 10, Math.floor(Math.random() * 750), 20);
+    this.egg = new Egg("whiteEgg", 1, 25, 100, 20);
     this.intervalGame = undefined;
     this.gameOver = undefined;
   }
@@ -24,9 +25,16 @@ class Game {
     );
   }
 
+  _resetEgg() {
+    this.egg.y = 20;
+    this.egg.x = Math.floor(Math.random() * 750);
+  }
+
   _checkEggHitBottom() {
     if (this.egg.y > 600) {
-      this.egg.y = 20;
+      this.life -= 1;
+      this._resetEgg();
+      console.log(this.life);
     }
   }
 
@@ -62,12 +70,18 @@ class Game {
   }
 
   update() {
-    this.ctx.clearRect(0, 0, 800, 600);
-    this._drawPlayer();
-    this._drawEgg();
-    this.collission();
-    this._checkEggHitBottom();
-    window.requestAnimationFrame(this.update.bind(this));
+    if (this.life > 0 && this.points < 3) {
+      this.ctx.clearRect(0, 0, 800, 600);
+      this._drawPlayer();
+      this._drawEgg();
+      this.collission();
+      this._checkEggHitBottom();
+      window.requestAnimationFrame(this.update.bind(this));
+    } else if (this.points === 3) {
+      this._winGame();
+    } else {
+      this._gameOver();
+    }
   }
 
   pause() {
@@ -78,23 +92,44 @@ class Game {
   }
 
   collission() {
-    const eggBottonLeftX = this.egg.x + this.egg.height;
+    const eggBottonLeftX = this.egg.x;
+    const eggBottonleftY = this.egg.y + this.egg.height;
+
     const playerTopLeftX = this.player.position.x;
+    const playerTopLeftY = this.pla;
     const playerTopRightX = this.player.position.x + this.player.width;
+
     const eggBottonRightX = this.egg.x + this.egg.width;
-    const eggBottonY = this.egg.y;
+    const eggBottonRightY = this.egg.y + this.egg.height;
+
+    const eggBottonY = this.egg.y + this.egg.height;
     const playerTop = this.player.position.y;
     if (
       ((eggBottonLeftX >= playerTopLeftX &&
         eggBottonLeftX <= playerTopRightX) ||
         (eggBottonRightX >= playerTopLeftX &&
           eggBottonRightX <= playerTopRightX)) &&
-      //eggBottonY >= playerTop
-      eggBottonY === playerTop
+      eggBottonY >= playerTop
     ) {
       console.log("Collission");
+      this._resetEgg();
       this.points += this.egg.points;
       console.log(`Points: ${this.points}`);
     }
+  }
+
+  _gameOver() {
+    let parent = document.getElementById("gameover");
+    let h1TagGameOver = document.createElement("h1");
+    h1TagGameOver.innerHTML = "Game Over";
+    parent.appendChild(h1TagGameOver);
+  }
+
+  // añadir div, meter dentro h1 y este div es position relative
+  _winGame() {
+    let parent = document.getElementById("winGame");
+    let h1TagWIN = document.createElement("h1");
+    h1TagWIN.innerHTML = "WIN WIN WIN";
+    parent.appendChild(h1TagWIN);
   }
 }

@@ -10,16 +10,20 @@
         border: solid 1px black;
       }
     </style>
+    <style src="./js/style.css"></style>
   </head>
   <body>
-    <div id="counter">
-      Score:
+    <button>Start Game</button>
+    <button>Restart</button>
+    <div class="counter">Score:<span id="counter">0</span></div>
+    <div class="brokenEgg">Broken eggs:<span id="brokenEgg">0</span></div>
+
+    <div id="canvas-conteiner">
+      <canvas id="catchEgg" width="800" height="600"></canvas>
     </div>
-    <div id="egg loss">Broken eggs:</div>
-    <canvas id="catchEgg" width="800" height="600"></canvas>
-    <div id="gameover" style="display: none">
-      Game Over
-    </div>
+
+    <div id="gameover"></div>
+    <div id="winGame"></div>
     <!-- <script src="/js/assets.js"></script> -->
 
     <script src="./js/egg.js"></script>
