@@ -23,8 +23,7 @@ class Game {
       window.cancelAnimationFrame(this.intervalGame);
       this.intervalGame = undefined;
     }
-    // let document.getElementById borrare gave over
-    //  capturar el btn, add eventlistener +limpiar contadores
+
     this.start();
   }
 
@@ -44,7 +43,7 @@ class Game {
   }
 
   _checkEggHitBottom() {
-    if (this.egg.y > 600) {
+    if (this.egg.y > 500) {
       this.life -= 1;
       this._resetEgg();
       console.log(this.life);
@@ -84,7 +83,7 @@ class Game {
 
   update() {
     if (this.life > 0 && this.points < 3) {
-      this.ctx.clearRect(0, 0, 800, 600);
+      this.ctx.clearRect(0, 0, 800, 500);
       this._drawPlayer();
       this._drawEgg();
       this.collission();
