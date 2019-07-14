@@ -4,7 +4,8 @@ class Game {
     this.points = 0;
     this.life = 3;
     this.player = new Player();
-    this.egg = new Egg("whiteEgg", 1, 25, 100, 20);
+    this.egg = new Egg("whiteEgg", 1, 15, 100, 20);
+    this.egg2 = new Egg("blackEgg", -2, 10, 300, 20);
     this.intervalGame = undefined;
     this.gameOver = undefined;
   }

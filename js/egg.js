@@ -16,6 +16,12 @@ class Egg {
     }, 100);
   }
 
+  startDropSlow() {
+    this.interval = setInterval(() => {
+      this.drop();
+    }, 300);
+  }
+
   drop() {
     this.y += this.velocity;
   }
