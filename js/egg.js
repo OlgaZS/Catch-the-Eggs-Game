@@ -10,10 +10,16 @@ class Egg {
     this.interval = undefined;
   }
 
-  startDrop() {
+  // startDrop() {
+  // this.interval = setInterval(() => {
+  // this.drop();
+  // }, 100);
+  // }
+
+  startDrop(timeout) {
     this.interval = setInterval(() => {
       this.drop();
-    }, 100);
+    }, timeout);
   }
 
   startDropSlow() {

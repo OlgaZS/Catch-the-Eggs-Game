@@ -13,7 +13,8 @@ class Game {
   start() {
     console.log("start!!!", this);
     this.addControlToKeys();
-    this.egg.startDrop();
+    this.egg.startDrop(100);
+    this.egg2.startDrop(200);
     this.intervalGame = window.requestAnimationFrame(this.update.bind(this));
   }
 
@@ -41,10 +42,13 @@ class Game {
   _resetEgg() {
     this.egg.y = 20;
     this.egg.x = Math.floor(Math.random() * 750);
+
+    this.egg2.y = 20;
+    this.egg2.x = Math.floor(Math.random() * 750);
   }
 
   _checkEggHitBottom() {
-    if (this.egg.y > 500) {
+    if (this.egg.y > 500 || this.egg2.y > 500) {
       this.life -= 1;
       this._resetEgg();
       console.log(this.life);
@@ -52,7 +56,7 @@ class Game {
   }
 
   _drawEgg() {
-    this.ctx.fillStyle = "blue";
+    this.ctx.fillStyle = "white";
     this.ctx.fillRect(this.egg.x, this.egg.y, this.egg.width, this.egg.height);
   }
 
@@ -86,7 +90,7 @@ class Game {
     if (this.life > 0 && this.points < 3) {
       this.ctx.clearRect(0, 0, 800, 500);
       this._drawPlayer();
-      this._drawEgg();
+      this._drawEgg(this.egg); // sin parametro antes
       this.collission();
       this._checkEggHitBottom();
       window.requestAnimationFrame(this.update.bind(this));
