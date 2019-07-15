@@ -1,7 +1,7 @@
 class Game {
   constructor(ctx) {
     this.ctx = ctx;
-    this.points = 0;
+    this.points = 0; // egg counter
     this.life = 3;
     this.player = new Player();
     this.egg = new Egg("whiteEgg", 1, 15, 100, 20);
@@ -16,6 +16,7 @@ class Game {
     this.egg.startDrop(100);
     this.egg2.startDrop(200);
     this.intervalGame = window.requestAnimationFrame(this.update.bind(this));
+    document.getElementById("counter").style = "display: block;";
   }
 
   restart() {
@@ -88,6 +89,7 @@ class Game {
 
   update() {
     if (this.life > 0 && this.points < 3) {
+      // cambiar points a 1000..
       this.ctx.clearRect(0, 0, 800, 500);
       this._drawPlayer();
       this._drawEgg(this.egg); // sin parametro antes
@@ -132,6 +134,7 @@ class Game {
       this._resetEgg();
       this.points += this.egg.points;
       console.log(`Points: ${this.points}`);
+      document.getElementById("score").innerHTML = this.points;
     }
   }
 
