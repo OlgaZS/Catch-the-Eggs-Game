@@ -1,13 +1,15 @@
 class Egg {
-  constructor(name, points, velocity, x, y) {
+  constructor(name, points, velocity, x, y, src) {
     this.name = name;
     this.points = points;
     this.velocity = velocity;
     this.x = x;
     this.y = y;
     this.width = 20;
-    this.height = 20;
+    this.height = 25;
     this.interval = undefined;
+    this.eggImage = new Image();
+    this.eggImage.src = src;
   }
 
   // startDrop() {

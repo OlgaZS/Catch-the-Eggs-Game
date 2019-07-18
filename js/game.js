@@ -1,13 +1,16 @@
 class Game {
-  constructor(ctx) {
+  constructor(ctx, winGame, gameOver) {
     this.ctx = ctx;
     this.points = 0; // egg counter
     this.life = 3;
     this.player = new Player();
-    this.egg = new Egg("whiteEgg", 1, 15, 100, 20);
-    this.egg2 = new Egg("blackEgg", -2, 10, 300, 20);
+    this.egg = new Egg("whiteEgg", 1, 15, 120, 20, "/images/whiteEgg.png");
+    this.egg2 = new Egg("blackEgg", 2, 10, 300, 20, "/images/goldenEgg.png");
     this.intervalGame = undefined;
     this.gameOver = undefined;
+    this.domWinGame = winGame;
+    this.domGameOver = gameOver;
+    this.statusGame = "runing";
   }
 
   start() {
@@ -17,22 +20,20 @@ class Game {
     this.egg2.startDrop(200);
     this.intervalGame = window.requestAnimationFrame(this.update.bind(this));
     document.getElementById("counter").style = "display: block;";
+    document.getElementById("life-counter").style = "display: block;";
   }
 
   restart() {
     this.points = 0;
     this.life = 3;
-    if (this.intervalGame) {
-      window.cancelAnimationFrame(this.intervalGame);
-      this.intervalGame = undefined;
-    }
-
     this.start();
   }
 
   _drawPlayer() {
-    this.ctx.fillStyle = "black";
-    this.ctx.fillRect(
+    const playerImage = new Image();
+    playerImage.src = "/images/cesta.png";
+    this.ctx.drawImage(
+      playerImage,
       this.player.position.x,
       this.player.position.y,
       this.player.width,
@@ -52,36 +53,47 @@ class Game {
     if (this.egg.y > 500 || this.egg2.y > 500) {
       this.life -= 1;
       this._resetEgg();
-      console.log(this.life);
+      document.getElementById("lives").innerHTML = this.life;
     }
   }
 
-  _drawEgg() {
-    this.ctx.fillStyle = "white";
-    this.ctx.fillRect(this.egg.x, this.egg.y, this.egg.width, this.egg.height);
+  _drawEgg(egg) {
+    this.ctx.drawImage(egg.eggImage, egg.x, egg.y, egg.width, egg.height);
+  }
+
+  checkGameStatus() {
+    switch (this.ctx) {
+      case "pause":
+        this.statusGame = "pause";
+        break;
+      case "runing":
+        this.statusGame = "runing";
+        break;
+    }
   }
 
   addControlToKeys() {
     document.onkeydown = e => {
       switch (e.keyCode) {
-        case 38: // arrow up
-          // console.log("key up");
-          break;
-        case 40: // arror down
-          // console.log("key down");
-          break;
         case 37:
+          //controlar si estyo running
           this.player.moveLeft(); // arror left
           // console.log("key left");
           // console.log(this.player.position.x);
           break;
         case 39:
+          //controlar is estoy running
           this.player.moveRight(); // arrow right
           // console.log("key right");
           // console.log(this.player.position.x);
           break;
         case 80: // p pause
-          this.egg.interval ? this.egg.stop() : this.egg.startDrop();
+          if (this.statusGame === "pause") {
+            this.statusGame = "runing";
+          } else if (this.statusGame === "runing") {
+            this.statusGame = "pause";
+          }
+          //controlar si ya estoy pause y si tengo que llamar a pause()
           break;
       }
     };
@@ -92,7 +104,8 @@ class Game {
       // cambiar points a 1000..
       this.ctx.clearRect(0, 0, 800, 500);
       this._drawPlayer();
-      this._drawEgg(this.egg); // sin parametro antes
+      this._drawEgg(this.egg);
+      this._drawEgg(this.egg2); // sin parametro antes
       this.collission();
       this._checkEggHitBottom();
       window.requestAnimationFrame(this.update.bind(this));
@@ -104,6 +117,7 @@ class Game {
   }
 
   pause() {
+    this.egg.interval ? this.egg.stop() : this.egg.startDrop();
     if (this.intervalGame) {
       window.cancelAnimationFrame(this.intervalGame);
       this.intervalGame = undefined;
@@ -139,17 +153,19 @@ class Game {
   }
 
   _gameOver() {
-    let parent = document.getElementById("gameover");
-    let h1TagGameOver = document.createElement("h1");
-    h1TagGameOver.innerHTML = "Game Over";
-    parent.appendChild(h1TagGameOver);
+    window.cancelAnimationFrame(this.intervalGame);
+    this.intervalGame = undefined;
+    this.egg.stop();
+    this.egg2.stop();
+    this.domGameOver();
   }
 
   // añadir div, meter dentro h1 y este div es position relative
   _winGame() {
-    let parent = document.getElementById("winGame");
-    let h1TagWIN = document.createElement("h1");
-    h1TagWIN.innerHTML = "WIN WIN WIN";
-    parent.appendChild(h1TagWIN);
+    window.cancelAnimationFrame(this.intervalGame);
+    this.intervalGame = undefined;
+    this.egg.stop();
+    this.egg2.stop();
+    this.domWinGame();
   }
 }

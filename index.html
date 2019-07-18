@@ -9,13 +9,20 @@
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
-    <button id="startBTN">Start Game</button>
-    <button id="restartBTN">ReStart</button>
-    <!-- <div class="counterOld">Score:<span id="counterOld">0</span></div> -->
-    <!-- <div class="brokenEgg">Broken eggs:<span id="brokenEgg">0</span></div> -->
-    <div id="counter" style="display:none;">
-      Score: <span id="score">0</span>
+    <div>
+      <button id="startBTN">Start Game</button>
+      <button id="restartBTN">ReStart</button>
     </div>
+
+    <div id="counters">
+      <div id="counter" style="display:none;">
+        Score: <span id="score">0</span>
+      </div>
+      <div id="life-counter" style="display:none;">
+        Lifes: <span id="lives">3</span>
+      </div>
+    </div>
+
     <div id="canvas-conteiner">
       <canvas id="catchEgg" width="800" height="500"></canvas>
     </div>
@@ -27,15 +34,11 @@
       <button id="continue-btn">RESUME</button>
     </div>
 
-    <div id="gameover"></div>
-    <div id="winGame"></div>
     <!-- <script src="/js/assets.js"></script> -->
 
     <script src="./js/egg.js"></script>
     <script src="./js/player.js"></script>
     <script src="./js/game.js"></script>
     <script src="./js/main.js"></script>
-
-    <img src="/images/farm.jpg" id="backgroundImage" style="display: none;" />
   </body>
 </html>
