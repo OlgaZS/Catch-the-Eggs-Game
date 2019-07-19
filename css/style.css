@@ -7,6 +7,10 @@ body {
   background-color: #4b2f53be;
 }
 
+#istructions {
+  color: white;
+}
+
 #catchEgg {
   border: solid 3px #faf7f5;
   background: url("/images/farm6.jpg");
@@ -57,7 +61,7 @@ body {
   text-transform: uppercase;
   background: #ffffff;
   padding: 10px;
-  border: 1px solid #8f7597 !important;
+  border: 3px solid #8f7597 !important;
   border-radius: 10px;
   display: inline-block;
   width: 170px;
@@ -76,7 +80,7 @@ body {
   text-transform: uppercase;
   background: #663985;
   padding: 10px;
-  border: 1px solid #8f7597 !important;
+  border: 3px solid #8f7597 !important;
   border-radius: 10px;
   display: inline-block;
   width: 170px;

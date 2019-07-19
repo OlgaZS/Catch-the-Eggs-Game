@@ -13,7 +13,7 @@ window.onload = function() {
     let divWin = document.createElement("div");
     divWin.setAttribute("id", "mensaje");
     divWin.className = "win-div";
-    divWin.innerHTML = `<h1> TIME IS OVER,YOU WIN</h1>
+    divWin.innerHTML = `<h1> THE GOAL IS REACHED,YOU WIN</h1>
 `;
     parent.prepend(divWin);
   }
