@@ -6,7 +6,7 @@ class Game {
     this.timeout = 60; // resetearlo en restart
     this.player = new Player();
     this.egg = new Egg("whiteEgg", 1, 15, 10, 20, "/images/whiteEgg.png");
-    // this.egg2 = new Egg("goldenEgg", 2, 10, 300, 20, "/images/goldenEgg.png");
+    // this.egg2 = new Egg("goldenEgg", 2, 10, 300, 20, "/images/goldenEgg.png"); falta crear coliciones en array
     this.intervalGame = undefined;
     this.intervalTimeout = undefined;
     this.gameOver = undefined;
