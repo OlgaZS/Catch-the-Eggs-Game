@@ -1,7 +1,7 @@
 class Player {
   constructor() {
-    this.width = 40;
-    this.height = 40;
+    this.width = 60;
+    this.height = 60;
     this.position = {
       x: 800 / 2 - this.width,
       y: 500 - this.height - 10
@@ -9,8 +9,15 @@ class Player {
     // this.intervalID = undefined;
   }
 
+  // playSound() {
+  //   const playerSound = new SourceBuffer();
+  //   playerSound.src = "/sounds/dropSound.wav";
+
+  //   this.playSound.play();
+  // }
+
   moveLeft() {
-    if (this.position.x >= 50) {
+    if (this.position.x >= 40) {
       // si no se cumple  ->  ejecuta movimiento
       this.position.x -= 50;
     }

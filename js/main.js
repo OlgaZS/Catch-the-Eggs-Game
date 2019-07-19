@@ -8,21 +8,24 @@ window.onload = function() {
 
   document.getElementById("restartBTN").addEventListener("click", restart);
 
-  function winGame() {
+  function winGame(score) {
     let parent = document.getElementById("canvas-conteiner");
     let divWin = document.createElement("div");
     divWin.setAttribute("id", "mensaje");
     divWin.className = "win-div";
-    divWin.innerHTML = "<h1>YOU WIN</h1>";
+    divWin.innerHTML = `<h1> TIME IS OVER,YOU WIN</h1>
+`;
     parent.prepend(divWin);
   }
 
-  function gameOver() {
+  function gameOver(score) {
     let parent = document.getElementById("canvas-conteiner");
     let divGameOver = document.createElement("div");
     divGameOver.setAttribute("id", "mensaje");
     divGameOver.className = "game-over";
-    divGameOver.innerHTML = "<h1> GAME OVER</h1>";
+    divGameOver.innerHTML = `<h1> GAME OVER</h1>
+                            <p>YOUR SCORE: ${score}</p>
+    `;
     parent.prepend(divGameOver);
   }
 
@@ -44,5 +47,3 @@ window.onload = function() {
     game.start.bind(game)();
   }
 };
-
-// game.start();

@@ -3,10 +3,12 @@ class Game {
     this.ctx = ctx;
     this.points = 0; // egg counter
     this.life = 3;
+    this.timeout = 60; // resetearlo en restart
     this.player = new Player();
-    this.egg = new Egg("whiteEgg", 1, 15, 120, 20, "/images/whiteEgg.png");
-    this.egg2 = new Egg("blackEgg", 2, 10, 300, 20, "/images/goldenEgg.png");
+    this.egg = new Egg("whiteEgg", 1, 15, 10, 20, "/images/whiteEgg.png");
+    // this.egg2 = new Egg("goldenEgg", 2, 10, 300, 20, "/images/goldenEgg.png");
     this.intervalGame = undefined;
+    this.intervalTimeout = undefined;
     this.gameOver = undefined;
     this.domWinGame = winGame;
     this.domGameOver = gameOver;
@@ -14,23 +16,33 @@ class Game {
   }
 
   start() {
-    console.log("start!!!", this);
+    // this.intervalTimeout = setInterval(function() {
+    // this.timeout--;
+    // console.log(this.timeout);
+    // }, 1000);
+    this.points = 0;
+    this.life = 3;
+    // console.log("start!!!", this);
     this.addControlToKeys();
-    this.egg.startDrop(100);
-    this.egg2.startDrop(200);
+    this.egg.startDrop(130);
+    // this.egg2.startDrop(200);
     this.intervalGame = window.requestAnimationFrame(this.update.bind(this));
     document.getElementById("counter").style = "display: block;";
     document.getElementById("life-counter").style = "display: block;";
   }
 
   restart() {
+    document.getElementById("score").innerHTML = 0;
+    document.getElementById("lives").innerHTML = 0;
     this.points = 0;
     this.life = 3;
+
     this.start();
   }
 
   _drawPlayer() {
     const playerImage = new Image();
+
     playerImage.src = "/images/cesta.png";
     this.ctx.drawImage(
       playerImage,
@@ -45,12 +57,13 @@ class Game {
     this.egg.y = 20;
     this.egg.x = Math.floor(Math.random() * 750);
 
-    this.egg2.y = 20;
-    this.egg2.x = Math.floor(Math.random() * 750);
+    // this.egg2.y = 20;
+    // this.egg2.x = Math.floor(Math.random() * 750);
   }
 
   _checkEggHitBottom() {
-    if (this.egg.y > 500 || this.egg2.y > 500) {
+    if (this.egg.y > 500) {
+      //|| this.egg2.y > 500
       this.life -= 1;
       this._resetEgg();
       document.getElementById("lives").innerHTML = this.life;
@@ -59,17 +72,6 @@ class Game {
 
   _drawEgg(egg) {
     this.ctx.drawImage(egg.eggImage, egg.x, egg.y, egg.width, egg.height);
-  }
-
-  checkGameStatus() {
-    switch (this.ctx) {
-      case "pause":
-        this.statusGame = "pause";
-        break;
-      case "runing":
-        this.statusGame = "runing";
-        break;
-    }
   }
 
   addControlToKeys() {
@@ -100,16 +102,16 @@ class Game {
   }
 
   update() {
-    if (this.life > 0 && this.points < 3) {
+    if (this.life > 0 && this.points < 10) {
       // cambiar points a 1000..
       this.ctx.clearRect(0, 0, 800, 500);
       this._drawPlayer();
       this._drawEgg(this.egg);
-      this._drawEgg(this.egg2); // sin parametro antes
+      // this._drawEgg(this.egg2); // sin parametro antes
       this.collission();
       this._checkEggHitBottom();
       window.requestAnimationFrame(this.update.bind(this));
-    } else if (this.points === 3) {
+    } else if (this.points === 10) {
       this._winGame();
     } else {
       this._gameOver();
@@ -144,10 +146,11 @@ class Game {
           eggBottonRightX <= playerTopRightX)) &&
       eggBottonY >= playerTop
     ) {
-      console.log("Collission");
+      // console.log("Collission");
+      // dropSound.play();
       this._resetEgg();
       this.points += this.egg.points;
-      console.log(`Points: ${this.points}`);
+      // console.log(`Points: ${this.points}`);
       document.getElementById("score").innerHTML = this.points;
     }
   }
@@ -156,16 +159,15 @@ class Game {
     window.cancelAnimationFrame(this.intervalGame);
     this.intervalGame = undefined;
     this.egg.stop();
-    this.egg2.stop();
-    this.domGameOver();
+    // this.egg2.stop();
+    this.domGameOver(this.points);
   }
 
-  // añadir div, meter dentro h1 y este div es position relative
   _winGame() {
     window.cancelAnimationFrame(this.intervalGame);
     this.intervalGame = undefined;
     this.egg.stop();
-    this.egg2.stop();
+    // this.egg2.stop();
     this.domWinGame();
   }
 }

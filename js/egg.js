@@ -12,12 +12,6 @@ class Egg {
     this.eggImage.src = src;
   }
 
-  // startDrop() {
-  // this.interval = setInterval(() => {
-  // this.drop();
-  // }, 100);
-  // }
-
   startDrop(timeout) {
     this.interval = setInterval(() => {
       this.drop();

@@ -12,6 +12,7 @@ body {
   background: url("/images/farm6.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 10px;
 }
 
 #canvas-conteiner {
@@ -46,6 +47,7 @@ body {
   font-weight: 900;
   text-align: center;
   color: white;
+  font-size: 20px;
 }
 
 /* bottons */
@@ -58,7 +60,8 @@ body {
   border: 1px solid #8f7597 !important;
   border-radius: 10px;
   display: inline-block;
-  width: 110px;
+  width: 170px;
+  font-size: 18px;
 }
 
 #startBTN:hover {
@@ -76,7 +79,8 @@ body {
   border: 1px solid #8f7597 !important;
   border-radius: 10px;
   display: inline-block;
-  width: 110px;
+  width: 170px;
+  font-size: 18px;
 }
 
 #restartBTN:hover {
