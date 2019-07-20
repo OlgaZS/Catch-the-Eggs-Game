@@ -13,7 +13,7 @@ body {
 
 #catchEgg {
   border: solid 3px #faf7f5;
-  background: url("images/farm6.jpg");
+  background: url("../images/farm6.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   border-radius: 11px;
