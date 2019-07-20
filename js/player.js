@@ -9,7 +9,7 @@ class Player {
     // this.intervalID = undefined;
   }
 
-  // playSound() {
+  // playSound() { no funciona...
   //   const playerSound = new SourceBuffer();
   //   playerSound.src = "/sounds/dropSound.wav";
 
