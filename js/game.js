@@ -43,7 +43,7 @@ class Game {
   _drawPlayer() {
     const playerImage = new Image();
 
-    playerImage.src = "/images/cesta.png";
+    playerImage.src = "images/cesta.png";
     this.ctx.drawImage(
       playerImage,
       this.player.position.x,
